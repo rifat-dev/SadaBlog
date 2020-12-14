@@ -1,0 +1,82 @@
+<%- include('../../partials/hade.ejs') %>
+
+
+    <div class="container-fluid">
+        <div class="card card-body m-5 align-items-center">
+            <div class="col-md-4 mb-3">
+                <div class="row">
+                    <div>
+                        <div class="profile-pics">
+                            <img style="width: 200px;" src="<%= author.profilePics %> " alt="profile pic" class="img-thumbnail img-fluid" id="profilePics">
+                        </div>
+                        <div>
+                            Name : <strong> <%= author.profile.name  %> </strong> <br> Title : <strong> <%= author.profile.title  %>   </strong> <br> Bio : <strong> <%= author.profile.bio %> </strong>
+
+                            <div>
+                                <% if (author.profile.links.website) { %>
+                                    <span>
+                                           <a href="<%= author.profile.links.website %> " target="_blank">
+                                            <i class="fab fa-internet-explorer"></i>
+                                           </a>
+                                        </span>
+                                    <% } %>
+                                        <% if (author.profile.links.facebook) { %>
+                                            <span>
+                                               <a href="<%= author.profile.links.facebook %> " target="_blank">
+                                                <i class="fab fa-facebook-square"></i>
+                                               </a>
+                                            </span>
+                                            <% } %>
+                                                <% if (author.profile.links.gitHub) { %>
+                                                    <span>
+                                                   <a href="<%= author.profile.links.gitHub %> " target="_blank">
+                                                    <i class="fab fa-github-square "></i>
+                                                   </a>
+                                                </span>
+                                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <h5>Created Post</h5>
+            <div class="row">
+                <% if(posts.length===0){ %>
+                    <div class="text-center text-muted">
+                        <p>There is no posts available right now</p>
+                    </div>
+                    <% }else{ %>
+
+                        <% for(let post of posts){ %>
+                            <div class="card col-sm-3 m-3">
+
+                                <% if(post.thumbail){ %>
+                                    <img class="card-img-top mt-3" src="<%= post.thumbail  %> " alt="<%= post.title %> ">
+                                    <% } %>
+
+                                        <div class="card-body">
+                                            <a href="/web/<%= post._id %> " style="color:#222">
+                                                <h5>
+                                                    <%= post.title %>
+                                                </h5>
+                                            </a>
+                                        </div>
+                            </div>
+                            <% } %>
+
+                                <% } %>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    </div>
+
+    <%- include('../../partials/footer.ejs') %>
+
+        </body>
+
+        </html>

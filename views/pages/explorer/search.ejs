@@ -1,0 +1,86 @@
+<%- include('../../partials/hade.ejs') %>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h5>Search For -
+                    <%= searchText %>
+                </h5>
+                <section>
+                    <% if(posts.length === 0) { %>
+                        <div class="text-center text-muted my-4">
+                            <p>Nothing Found</p>
+                        </div>
+                        <% } else { %>
+
+                            <% for (let post of posts) { %>
+                                <div class="card card-body mt-4 mb-2">
+                                    <% if(post.thumbail){ %>
+                                        <img class="img-fluid mb-2" src="<%= post.thumbail %> " alt="<%= post.title %> ">
+                                        <% } %>
+                                            <a href="/web/<%= post._id %>" style="color: #222">
+                                                <h5>
+                                                    <%= post.title %>
+                                                </h5>
+                                                <p class="mb-4">
+                                                    <%= trumcate(post.body) %>
+                                                </p>
+                                            </a>
+                                            <div class="d-flex">
+                                                <small>
+                                                   <%= moment(post.createdAt) %> ,
+                                                    Posted By <%= post.author.username %> ,
+                                                    <%= post.readTime %> 
+
+                                               </small>
+                                                <% if(user){ %>
+                                                    <small class="ml-auto bookmark" style="font-size:20px" data-post="<%= post._id  %> ">
+                                                   <% if(bookmarks.includes(post._id)){ %>
+                                                      <i class="fas fa-bookmark" ></i>
+                                                   <% } else { %>  
+                                                    <i class="far fa-bookmark" ></i>
+                                                   <% } %> 
+                                                </small>
+                                                    <% } %>
+                                            </div>
+                                </div>
+                                <% } %>
+
+                                    <% } %>
+                </section>
+                <% if(totalPage > 1){ %>
+                    <nav class="col-md-6 offset-md-3" aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item <%=  currentPage === 1 ? 'disabled' : '' %> ">
+                                <a class="page-link" href="<%= `/search/?term=${searchText}&page=${currentPage - 1}` %>">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+
+                            <% for(let i = 1; i <= totalPage; i++){ %>
+                                <li class="page-item <%=  currentPage === i ? 'active' : '' %> ">
+                                    <a class="page-link" href="<%= `/search/?term=${searchText}&page=${i}` %>">
+                                        <span><%= i %></span>
+                                    </a>
+                                </li>
+                                <% } %>
+
+                                    <li class="page-item <%=  currentPage === totalPage ? 'disabled' : '' %> ">
+                                        <a class="page-link" href="<%= `/search/?term=${searchText}&page=${currentPage + 1}` %>">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                        </ul>
+                    </nav>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../../partials/footer.ejs') %>
+        <script src="/scripts/bookmarks.js"></script>
+        </body>
+
+        </html>

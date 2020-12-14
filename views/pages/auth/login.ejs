@@ -1,0 +1,36 @@
+<%- include('../../partials/hade.ejs') %>
+
+    <div class="container main mt-4">
+
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/auth/login" method="POST">
+                        <h4>Login Your Account</h4>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" name="email" class="form-control <%= error.email ? 'is-invalid' : ''  %> " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="exam@gmail.com">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <div class="invalid-feedback">
+                                <%= error.email && error.email %>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" name="password" class="form-control  <%=error.password ? 'is-invalid' : '' %> " placeholder="********" id="exampleInputPassword1">
+                            <div class="invalid-feedback">
+                                <%= error.password && error.password %>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-success form-control" value="LogIn">
+                    </form>
+                </div>
+                <a class="m-2" href="/auth/signup">Don't Have An Account ? Create Here</a>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../../partials/footer.ejs') %>
+        </body>
+
+        </html>

@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+        <!--tips: to change the nav placement use .fixed-top,.fixed-bottom,.sticky-top-->
+        <a class="navbar-brand" href="/web">Sada Blog</a>
+        <!--<a class="navbar-brand" href="#">
+            <img src="..." class="d-inline-block align-top" width="30" height="30" alt="...">Exp Blog
+        </a>-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/web">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <% if(isLoggedIn){ %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashbord">Dashbord</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/logout">Logout</a>
+                    </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/auth/login">LogIn</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/auth/signup">SignUp</a>
+                        </li>
+                        <% } %>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="GET" action="/search/">
+                <input class="form-control mr-sm-2" name="term" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>

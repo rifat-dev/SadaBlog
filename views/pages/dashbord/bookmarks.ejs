@@ -1,0 +1,58 @@
+<%- include('../../partials/hade.ejs') %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" />
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <%- include('../../partials/sideBar.ejs') %>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+
+                    <div class=" card card-body p-5  mx-5 mb-5">
+                        <h5>Lists Of My Bookmarked Posts</h5>
+                        <div class="row">
+                            <% if(posts.length===0){ %>
+                                <div class="text-center text-muted">
+                                    <p>You Did Not Bookmarked Any Post</p>
+                                </div>
+                                <% }else{ %>
+
+                                    <% for(let post of posts.reverse()){ %>
+                                        <div class="card col-sm-3 m-3">
+
+                                            <% if(post.thumbail){ %>
+                                                <img class="card-img-top mt-3" src="<%= post.thumbail  %> " alt="<%= post.title %> ">
+                                                <% } %>
+
+                                                    <div class="card-body">
+                                                        <a href="/web/<%= post._id %> " style="color:#222">
+                                                            <h5>
+                                                                <%= post.title %>
+                                                            </h5>
+                                                        </a>
+                                                    </div>
+                                        </div>
+                                        <% } %>
+
+                                            <% } %>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <%- include('../../partials/footer.ejs') %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js" integrity="sha512-vUJTqeDCu0MKkOhuI83/MEX5HSNPW+Lw46BA775bAWIp1Zwgz3qggia/t2EnSGB9GoS2Ln6npDmbJTdNhHy1Yw==" crossorigin="anonymous"></script>
+        <script src="/scripts/profilePicUplode.js"></script>
+        </body>
+
+        </html>
